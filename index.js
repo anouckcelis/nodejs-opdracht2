@@ -19,6 +19,10 @@ app.get("/api/v1/messages", (req, res) => {
     res.json(result);
 });
 
+app.get("/api/v1/messages/:id", (req, res) => {
+    res.send("GET message with ID: " + req.params.id);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
