@@ -20,11 +20,19 @@ app.get('/', (req, res) => {
 });
 
 app.get("/api/v1/messages", (req, res) => {
+    const username = req.query.user;
+
+    let resultMessages = messages;
+
+    if (username) {
+        resultMessages = messages.filter(message => message.user === username);
+    }
+
     const result = {
-        'status': 'success',
-        'message': 'GETTING messages',
-        'data': {
-            'messages': messages
+        status: "success",
+        message: "GETTING MESSAGES",
+        data: {
+            messages: resultMessages
         }
     };
 
@@ -46,7 +54,7 @@ app.get("/api/v1/messages/:id", (req, res) => {
 
     const result = {
         status: "success",
-        message: "GETTING messages " + id,
+        message: `GETTING messages ${id}`,
         data: {
             messages: [message]
         }
