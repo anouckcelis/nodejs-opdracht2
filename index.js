@@ -3,6 +3,7 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
+let messages = [];
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -22,6 +23,22 @@ app.get("/api/v1/messages", (req, res) => {
 app.get("/api/v1/messages/:id", (req, res) => {
     res.send("GET message with ID: " + req.params.id);
 });
+
+app.post("/api/v1/messages", (req, res) => {
+    let message = {
+        'user': 'John',
+        'text': 'Hello World!'
+    };
+    messages.push(message);
+    const result = {
+        'status': 'success',
+        'data': {
+            'message': message
+        }
+    };
+    res.json(result);
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
