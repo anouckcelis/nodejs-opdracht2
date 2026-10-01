@@ -31,7 +31,27 @@ app.get("/api/v1/messages", (req, res) => {
 });
 
 app.get("/api/v1/messages/:id", (req, res) => {
-    res.send("GET message with ID: " + req.params.id);
+    const id = req.params.id;
+    const message = messages[id];
+
+    if (!message) {
+        return res.status(404).json({
+            status: "fail",
+            data: {
+                message: "Message not found"
+            }
+        });
+    }
+
+    const result = {
+        status: "success",
+        message: "GETTING messages " + id,
+        data: {
+            messages: [message]
+        }
+    };
+
+    res.json(result);
 });
 
 app.post("/api/v1/messages", (req, res) => {
