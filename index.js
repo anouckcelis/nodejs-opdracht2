@@ -71,6 +71,23 @@ app.post("/api/v1/messages", (req, res) => {
     res.json(result);
 });;
 
+app.put("/api/v1/messages/:id", (req, res) => {
+    const id = req.params.id;
+    const message = messages[id];
+
+    message.text = req.body.message.text;
+
+    const result = {
+        status: "success",
+        message: "Message updated",
+        data: {
+            message: message
+        }
+    };
+
+    res.json(result);
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
