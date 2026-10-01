@@ -2,6 +2,7 @@ import express from 'express';
 
 const app = express();
 const port = 3000;
+app.use(express.json());
 
 let messages = [
     {
@@ -55,19 +56,20 @@ app.get("/api/v1/messages/:id", (req, res) => {
 });
 
 app.post("/api/v1/messages", (req, res) => {
-    let message = {
-        'user': 'John',
-        'text': 'Hello World!'
-    };
+    const message = req.body.message;
+
     messages.push(message);
+
     const result = {
-        'status': 'success',
-        'data': {
-            'message': message
+        status: "success",
+        message: "POST MESSAGE",
+        data: {
+            message: message
         }
     };
+
     res.json(result);
-});
+});;
 
 
 app.listen(port, () => {
