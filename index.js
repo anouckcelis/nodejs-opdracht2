@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.get("/api/v1/messages", (req, res) => {
     const result = {
         'status': 'success',
-        'messages': 'GETTING MESSAGE',
+        'message': 'GETTING messages',
         'data': {
             'messages': messages
         }
