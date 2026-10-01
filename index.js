@@ -3,7 +3,16 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-let messages = [];
+let messages = [
+    {
+        user: "John",
+        message: "Hello"
+    },
+    {
+        user: "Jane",
+        message: "Hi"
+    }
+];
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -12,6 +21,7 @@ app.get('/', (req, res) => {
 app.get("/api/v1/messages", (req, res) => {
     const result = {
         'status': 'success',
+        'messages': 'GETTING MESSAGE',
         'data': {
             'messages': messages
         }
