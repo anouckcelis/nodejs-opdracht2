@@ -88,6 +88,18 @@ app.put("/api/v1/messages/:id", (req, res) => {
     res.json(result);
 });
 
+app.delete("/api/v1/messages/:id", (req, res) => {
+    const id = req.params.id;
+
+    messages.splice(id, 1);
+
+    const result = {
+        status: "success",
+        message: "Message deleted"
+    };
+
+    res.json(result);
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
