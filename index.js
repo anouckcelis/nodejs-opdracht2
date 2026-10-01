@@ -62,7 +62,7 @@ app.post("/api/v1/messages", (req, res) => {
 
     const result = {
         status: "success",
-        message: "POST MESSAGE",
+        message: "Message saved",
         data: {
             message: message
         }
